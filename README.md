@@ -1,5 +1,5 @@
 # claude-ai-skill-of-the-week
-Curating the greatest Claude Skills that actually change how you work.
+Curating the greatest Claude AI Skills that actually change how you work.
 
 # AI Skill of the Week
 
