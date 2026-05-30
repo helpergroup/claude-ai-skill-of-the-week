@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiet Power, Loud Results | Workshop Resources</title>
+
+<!--
+============================================================
+  CONFIG BLOCK  (verify or swap each value before deploy)
+============================================================
+  Four links power this page. Edit the values inside the
+  window.CONFIG object in the <script> at the bottom of this
+  file. Each slot is labeled. Empty slots are flagged on the
+  page so nothing ships half wired.
+
+   1. FORM_ACTION    Email capture form action URL.
+                     Status: NEEDS WIRING (paste action URL).
+   2. KIT_PAYMENT    Omega Kit checkout link, $97 one-time.
+                     Status: NEEDS WIRING (paste link).
+   3. BOOK_LINK      The Money Map book purchase link.
+                     Status: NOT FOUND, left empty by design.
+   4. BOOKING_LINK   Voice Blueprint booking link.
+                     Status: SET to the brand booking fallback.
+
+  No secrets live in this file. Links only.
+============================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --navy:#1A2A3A;
+    --gold:#C9952A;
+    --gold-soft:rgba(201,149,42,0.14);
+    --charcoal:#0A0E17;
+    --warm:#E8ECF4;
+    --warm-dim:rgba(232,236,244,0.66);
+    --warm-faint:rgba(232,236,244,0.40);
+    --line:rgba(232,236,244,0.12);
+    --card:#15202E;
+    --radius:16px;
+    --maxw:1080px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--charcoal);
+    color:var(--warm);
+    font-family:"DM Sans",system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:"Space Mono",ui-monospace,monospace}
+  .num{font-family:"Space Mono",ui-monospace,monospace}
+
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  section{padding:84px 0;border-top:1px solid var(--line)}
+  .eyebrow{
+    font-family:"Space Mono",monospace;
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    font-size:.74rem;
+    color:var(--gold);
+    margin-bottom:18px;
+  }
+  h1,h2,h3{line-height:1.15;font-weight:700;letter-spacing:-.01em}
+  h1{font-size:clamp(2.3rem,6vw,4rem)}
+  h2{font-size:clamp(1.8rem,4vw,2.7rem)}
+  h3{font-size:clamp(1.15rem,2.4vw,1.4rem)}
+  p.lead{font-size:clamp(1.05rem,2.2vw,1.3rem);color:var(--warm-dim);max-width:60ch}
+  .muted{color:var(--warm-dim)}
+  .faint{color:var(--warm-faint)}
+
+  /* Buttons */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:"DM Sans",sans-serif;font-weight:700;font-size:1rem;
+    padding:16px 28px;border-radius:12px;border:1px solid transparent;
+    cursor:pointer;text-decoration:none;transition:transform .15s ease,box-shadow .2s ease,background .2s ease;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .btn-primary{background:var(--gold);color:var(--charcoal);box-shadow:0 8px 30px rgba(201,149,42,0.28)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(201,149,42,0.38)}
+  .btn-ghost{background:transparent;color:var(--warm);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  .btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+  .btn[aria-disabled="true"]{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
+
+  /* Hero */
+  .hero{
+    border-top:none;
+    padding:120px 0 96px;
+    background:
+      radial-gradient(1100px 520px at 78% -8%,rgba(201,149,42,0.16),transparent 60%),
+      linear-gradient(180deg,var(--navy),var(--charcoal));
+  }
+  .hero h1{max-width:16ch}
+  .hero .lead{margin-top:22px}
+  .hero-tag{margin-top:14px;font-size:.95rem}
+  .hero-cta{margin-top:40px}
+
+  /* Magnet card */
+  .magnet{
+    background:linear-gradient(180deg,var(--navy),var(--card));
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:40px;display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;
+  }
+  .magnet ul{list-style:none;margin-top:18px;display:grid;gap:12px}
+  .magnet li{display:flex;gap:12px;color:var(--warm-dim)}
+  .magnet li::before{content:"";flex:0 0 9px;height:9px;margin-top:9px;border-radius:50%;background:var(--gold)}
+  form.gate{display:grid;gap:14px}
+  .field label{display:block;font-size:.82rem;letter-spacing:.04em;color:var(--warm-dim);margin-bottom:7px}
+  .field input{
+    width:100%;padding:15px 16px;border-radius:11px;border:1px solid var(--line);
+    background:var(--charcoal);color:var(--warm);font-family:"DM Sans",sans-serif;font-size:1rem;
+    transition:border-color .15s ease,box-shadow .15s ease;
+  }
+  .field input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+  .gate .btn-primary{width:100%;justify-content:center;margin-top:4px}
+  .gate .note{font-size:.8rem;color:var(--warm-faint);text-align:center}
+  .flag{
+    font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.05em;
+    color:var(--gold);background:var(--gold-soft);border:1px solid rgba(201,149,42,0.3);
+    padding:8px 12px;border-radius:9px;margin-top:10px;display:none;
+  }
+  .flag.show{display:block}
+
+  /* Section headers */
+  .sec-head{max-width:62ch;margin-bottom:42px}
+  .sec-head p{margin-top:14px}
+
+  /* Generator grid */
+  .gen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+  .gen-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px;position:relative;display:flex;flex-direction:column;gap:14px;overflow:hidden;
+  }
+  .gen-card .tag{
+    font-family:"Space Mono",monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--gold);
+  }
+  .gen-card h3{font-size:1.22rem}
+  .gen-card .meta{font-size:.86rem;color:var(--warm-dim)}
+  .gen-card .meta b{color:var(--warm);font-weight:500}
+
+  /* Free generator (full width feature) */
+  .engine{
+    background:linear-gradient(180deg,var(--navy),var(--card));
+    border:1px solid rgba(201,149,42,0.28);border-radius:var(--radius);
+    padding:34px;display:grid;grid-template-columns:1fr 1fr;gap:30px;
+  }
+  .engine .inputs{display:grid;gap:16px;align-content:start}
+  .engine textarea,.engine input{
+    width:100%;padding:14px 15px;border-radius:11px;border:1px solid var(--line);
+    background:var(--charcoal);color:var(--warm);font-family:"DM Sans",sans-serif;font-size:.96rem;resize:vertical;
+    transition:border-color .15s ease,box-shadow .15s ease;
+  }
+  .engine textarea:focus,.engine input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+  .engine label{display:block;font-size:.82rem;color:var(--warm-dim);margin-bottom:7px}
+  .out-wrap{display:flex;flex-direction:column;gap:12px}
+  .out-bar{display:flex;justify-content:space-between;align-items:center}
+  .out-bar .ttl{font-family:"Space Mono",monospace;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+  .copy-btn{
+    font-family:"DM Sans",sans-serif;font-weight:700;font-size:.84rem;
+    padding:9px 16px;border-radius:9px;border:1px solid var(--line);background:transparent;color:var(--warm);
+    cursor:pointer;transition:all .15s ease;
+  }
+  .copy-btn:hover{border-color:var(--gold);color:var(--gold)}
+  .copy-btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .copy-btn.done{background:var(--gold);color:var(--charcoal);border-color:var(--gold)}
+  pre.out{
+    background:var(--charcoal);border:1px solid var(--line);border-radius:12px;
+    padding:20px;overflow:auto;max-height:460px;
+    font-family:"Space Mono",monospace;font-size:.82rem;line-height:1.7;color:var(--warm);
+    white-space:pre-wrap;word-break:break-word;
+    opacity:0;transform:translateY(8px);transition:opacity .4s ease,transform .4s ease;
+  }
+  pre.out.reveal{opacity:1;transform:none}
+  .tag-x{color:var(--gold)}
+
+  /* Kit / locked state */
+  .kit-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:16px;margin-bottom:10px}
+  .price{font-family:"Space Mono",monospace;font-size:2.4rem;font-weight:700;color:var(--gold)}
+  .price small{font-size:1rem;color:var(--warm-dim);font-weight:400}
+  .bonus{
+    background:var(--gold-soft);border:1px solid rgba(201,149,42,0.3);border-radius:12px;
+    padding:18px 20px;margin:22px 0 30px;font-size:.95rem;
+  }
+  .bonus b{color:var(--gold)}
+  .gen-card.locked .body{filter:blur(3px);opacity:.5;pointer-events:none;user-select:none}
+  .lock-overlay{
+    position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;gap:12px;padding:24px;
+    background:linear-gradient(180deg,rgba(10,14,23,0.55),rgba(10,14,23,0.86));
+  }
+  .lock-overlay .lock-ic{font-size:1.3rem}
+  .lock-overlay .small{font-size:.8rem;color:var(--warm-dim);max-width:24ch}
+  .lock-overlay .btn{padding:11px 18px;font-size:.86rem}
+
+  /* Doors */
+  .doors{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .door{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:34px;display:flex;flex-direction:column;gap:14px;
+  }
+  .door .num{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+  .door p{color:var(--warm-dim);flex:1}
+
+  /* Footer */
+  footer{border-top:1px solid var(--line);padding:64px 0 80px;background:var(--navy)}
+  .foot-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:30px;align-items:flex-start}
+  .foot-grid h3{margin-bottom:8px}
+  .foot-grid a{color:var(--warm-dim);text-decoration:none}
+  .foot-grid a:hover{color:var(--gold)}
+  .sig{margin-top:40px;padding-top:26px;border-top:1px solid var(--line);font-family:"Space Mono",monospace;color:var(--gold);font-size:.95rem}
+  .tagline{color:var(--warm-faint);font-size:.86rem;margin-top:6px;max-width:46ch}
+
+  /* Responsive */
+  @media(max-width:820px){
+    section{padding:64px 0}
+    .magnet,.engine,.doors{grid-template-columns:1fr}
+    .magnet{padding:28px}
+    .engine{padding:24px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Quiet Power, Loud Results &middot; Workshop Resources</div>
+    <h1>You were in the room. Here is everything.</h1>
+    <p class="lead">Every prompt, every system, and the working generator we built together, in one place. No login, no hunting through your notes. Start with the cheat sheet, then put the engine to work on your own project today.</p>
+    <p class="hero-tag muted">The QUIET Method, in your hands, while it is still fresh.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#magnet">Get the QUIET Cheat Sheet</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ FREE MAGNET ============ -->
+<section id="magnet">
+  <div class="wrap">
+    <div class="magnet">
+      <div>
+        <div class="eyebrow">Free, start here</div>
+        <h2>The QUIET Method Cheat Sheet</h2>
+        <p class="muted" style="margin-top:14px">The one-page reference for the method you learned today. Why it works, when to reach for it, and the exact order that turns a blank page into a finished output. Print it, pin it, use it Monday morning.</p>
+        <ul>
+          <li>The five moves of the QUIET Method on a single page</li>
+          <li>The Omega Prompt skeleton you can copy into any project</li>
+          <li>The one constraint that stops the made-up facts problem</li>
+        </ul>
+      </div>
+      <form class="gate" id="gateForm" novalidate>
+        <div class="field">
+          <label for="fn">First name</label>
+          <input id="fn" name="first_name" type="text" autocomplete="given-name" placeholder="Your first name" required>
+        </div>
+        <div class="field">
+          <label for="em">Email</label>
+          <input id="em" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Send me the cheat sheet</button>
+        <p class="note">One email with your cheat sheet. Then the workshop follow-up series. Leave any time.</p>
+        <div class="flag" id="gateFlag">Form action not connected yet. Paste the capture form URL into FORM_ACTION in the config block before deploy.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LIVE GENERATOR ============ -->
+<section id="engine">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Live, free to use</div>
+      <h2>The Stakeholder Update Engine</h2>
+      <p class="muted">This is the proof. Drop in your messy weekly notes, name who needs to hear from you, and get a complete Omega Prompt built to the standard. Copy it, run it in your assistant, and four audience-ready updates come back in one pass. Free, right now, no purchase.</p>
+    </div>
+
+    <div class="engine">
+      <div class="inputs">
+        <div>
+          <label for="i-aud">Who needs this update, and what does each one care about?</label>
+          <textarea id="i-aud" rows="3" placeholder="Example: My director cares about budget and the launch date. The dev team cares about blockers. The client cares about what ships next."></textarea>
+        </div>
+        <div>
+          <label for="i-src">Your raw weekly notes</label>
+          <textarea id="i-src" rows="6" placeholder="Paste the messy version. Bullet fragments, half sentences, whatever you actually wrote down this week."></textarea>
+        </div>
+        <div>
+          <label for="i-con">Any extra constraints? (optional)</label>
+          <input id="i-con" type="text" placeholder="Example: Keep each version under 120 words">
+        </div>
+        <button class="btn btn-primary" id="genBtn" type="button">Build my Omega Prompt</button>
+      </div>
+
+      <div class="out-wrap">
+        <div class="out-bar">
+          <span class="ttl">Assembled Omega Prompt</span>
+          <button class="copy-btn" id="copyBtn" type="button">Copy</button>
+        </div>
+        <pre class="out" id="output" aria-live="polite"></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE OMEGA KIT ============ -->
+<section id="kit">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">The paid upgrade</div>
+      <h2>The Project Leader's Omega Kit</h2>
+      <p class="muted">You just watched one generator do a week of writing in one pass. The Kit is nine more, each built to the same Omega standard, each aimed at the work that eats your week. Recaps, risk logs, kickoffs, rollups, hard updates, and the save-and-reuse system so you build the prompt once and run it forever.</p>
+    </div>
+
+    <div class="kit-head">
+      <span class="price">$97 <small>one time, yours to keep</small></span>
+    </div>
+    <div class="bonus">
+      <b>Workshop bonus, next 48 hours only.</b> Buy within 48 hours of the workshop and you also get the bonus generator pack plus a seat on the group office-hours call, where we run your real projects through the Kit live.
+    </div>
+    <a class="btn btn-primary" id="kitBtn" href="#" style="margin-bottom:8px">Get the Omega Kit, $97</a>
+    <div class="flag" id="kitFlag">Checkout link not connected yet. Paste the $97 payment link into KIT_PAYMENT in the config block before deploy.</div>
+
+    <div class="gen-grid" id="lockedGrid" style="margin-top:40px"></div>
+  </div>
+</section>
+
+<!-- ============ DOOR 1 ============ -->
+<section id="door-money-map">
+  <div class="wrap">
+    <div class="doors">
+      <div class="door">
+        <span class="num">Door 1</span>
+        <h3>The Money Map</h3>
+        <p>If today showed you what is possible in an afternoon, the book shows you the full picture. The Money Map walks through where the time and money actually leak in a business, and the order to plug them. Read it before you build your next system.</p>
+        <a class="btn btn-ghost" id="bookBtn" href="#">Get the book</a>
+        <div class="flag" id="bookFlag">Book link not found. Left empty by design. Add the purchase link to BOOK_LINK in the config block, or remove this door before deploy.</div>
+      </div>
+
+      <!-- ============ DOOR 2 ============ -->
+      <div class="door">
+        <span class="num">Door 2</span>
+        <h3>The Voice Blueprint Session</h3>
+        <p>Want this built around your business, not a template? In one working session we map the systems that will give you back the most hours first, and you leave with a plan you can act on. Bring your messiest process. That is the one worth fixing.</p>
+        <a class="btn btn-primary" id="bookingBtn" href="#" target="_blank" rel="noopener">Book the session</a>
+        <div class="flag" id="bookingFlag">Booking link not set. Add BOOKING_LINK in the config block before deploy.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>Helper Group</h3>
+        <p class="muted">Melessa, AI Systems Architect</p>
+        <p class="tagline">Heaven sent, solving your most expensive and time-consuming problems.</p>
+      </div>
+      <div>
+        <h3>Reach out</h3>
+        <p><a href="mailto:melessa@helpergroup.ai">melessa@helpergroup.ai</a></p>
+        <p><a id="footBooking" href="#" target="_blank" rel="noopener">Book a session</a></p>
+      </div>
+    </div>
+    <div class="sig">Life is what you make it. Make every day count.</div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   CONFIG  (edit these four values, nothing else required)
+   ============================================================ */
+window.CONFIG = {
+  // 1. Email capture form action URL. NEEDS WIRING.
+  FORM_ACTION: "",
+  // 2. Omega Kit checkout link, $97 one-time. NEEDS WIRING.
+  KIT_PAYMENT: "",
+  // 3. The Money Map book purchase link. NOT FOUND, empty by design.
+  BOOK_LINK: "",
+  // 4. Voice Blueprint booking link. SET to brand booking fallback.
+  BOOKING_LINK: "https://links.helpersaas.com/widget/booking/SyLKN4RCDJRZP1oMpeOU"
+};
+
+/* ============================================================
+   GENERATOR ENGINE
+   One data-driven engine. Each generator is a data object with
+   a fixed Omega skeleton. assemble() returns a full Omega
+   Prompt in XML, tag order exact, <task> always last.
+   ============================================================ */
+
+// Shared constraint that must appear in every generator.
+var NO_INVENT = "Do not invent facts. Flag anything missing as needs confirmation.";
+var VOICE = "Direct, warm, accountable. Sound like a competent human who owns the work, not a status-report robot.";
+
+// Assemble any generator object into the Omega Prompt XML.
+function assemble(g){
+  return (
+    "<role>" + g.role + "</role>\n" +
+    "<context>" + g.context + "</context>\n" +
+    "<audience>" + g.audience + "</audience>\n" +
+    "<source_material>" + g.source + "</source_material>\n" +
+    "<constraints>" + g.constraints + "</constraints>\n" +
+    "<format>" + g.format + "</format>\n" +
+    "<voice>" + g.voice + "</voice>\n" +
+    "<task>" + g.task + "</task>"
+  );
+}
+
+/* ---- FREE generator: the Stakeholder Update Engine ---- */
+function buildFreeGenerator(){
+  var aud = document.getElementById("i-aud").value.trim();
+  var src = document.getElementById("i-src").value.trim();
+  var con = document.getElementById("i-con").value.trim();
+
+  // Defaults keep every tag populated, no empty tags, no placeholders left behind.
+  if(!aud){ aud = "My key stakeholders, each with different priorities and different patience for detail."; }
+  if(!src){ src = "My raw weekly project notes for this reporting cycle."; }
+  if(!con){ con = "Keep each version tight and skimmable"; }
+
+  var g = {
+    role: "You are a senior project manager and executive communicator who turns messy weekly project notes into clear, audience-ready updates.",
+    context: "It is the weekly reporting cycle. I have raw, unstructured notes and I need to update multiple stakeholders who each care about different things and have different patience for detail.",
+    audience: aud,
+    source: src,
+    constraints: con + ". Plain language, no jargon, no filler. Lead every version with what that reader cares about most. " + NO_INVENT,
+    format: "1. MASTER UPDATE: five bullets, biggest risk first. 2. EXECUTIVE VERSION: timeline, budget, risk only. 3. TECHNICAL VERSION: detail, dependencies, blockers. 4. CLIENT VERSION: progress, reassurance, next steps. Label each section.",
+    voice: VOICE,
+    task: "Using only my source material, produce all four outputs above in one pass."
+  };
+  return assemble(g);
+}
+
+/* ---- PAID generators: the nine in the Omega Kit ---- */
+var PAID = [
+  {
+    name:"Meeting Recap Engine",
+    blurb:"Turn raw meeting notes into a clean recap nothing falls out of.",
+    audience:"The team",
+    role:"You are a senior project manager who turns raw, messy meeting notes into a clean, trustworthy recap the whole team can act on.",
+    context:"A working meeting just ended. I have rough notes and I need a recap that captures every decision and assigns clear ownership before anyone forgets.",
+    audienceTag:"The team, the people who attended and the people who could not make it.",
+    source:"My raw notes from the meeting that just ended.",
+    constraints:"Pull every decision, every action, every owner, and every due date. Nothing gets dropped. Plain language, no filler. " + NO_INVENT,
+    format:"A short recap email at the top, then an action table with columns Action, Owner, Due Date, Status. Label each section.",
+    task:"Using only my notes, write the recap email and the action table in one pass."
+  },
+  {
+    name:"RAID Log Builder",
+    blurb:"Build a starter risk log from a single line about the project.",
+    audience:"The PM",
+    role:"You are a risk-savvy project manager who can see the likely failure points in a project from a single sentence.",
+    context:"A new project is starting and I need a starter risk register before the first planning session, so the team walks in with eyes open.",
+    audienceTag:"The PM and the core planning team.",
+    source:"My one-line description of the project.",
+    constraints:"Identify at least six likely risks. For each, give likelihood, impact, and a concrete mitigation. Be specific to this project, not generic. " + NO_INVENT,
+    format:"A table with columns Risk, Likelihood, Impact, Mitigation, Owner. Order by impact, highest first.",
+    task:"Using only my project description, produce the starter risk log in one pass."
+  },
+  {
+    name:"Kickoff Email Engine",
+    blurb:"Launch a project with one email that gets the team moving.",
+    audience:"The team",
+    role:"You are a project manager who writes kickoff emails that get a team aligned and moving on day one.",
+    context:"A new project is approved and I need to launch it with a single email that sets the tone and names the first move.",
+    audienceTag:"The team assigned to the project.",
+    source:"My project name, goal, timeline, and the team roles.",
+    constraints:"State the goal in one line. Cover timeline, roles, and the first ask clearly. Keep it tight enough that people actually read it. " + NO_INVENT,
+    format:"A kickoff email with a one-line goal, a short timeline, a roles list, and a clear first ask at the end.",
+    task:"Using only what I gave you, write the kickoff email in one pass."
+  },
+  {
+    name:"Portfolio Rollup",
+    blurb:"Combine many project updates into one summary an exec reads in a minute.",
+    audience:"Leadership",
+    role:"You are a portfolio lead who turns many separate project updates into one summary an executive can read in a minute.",
+    context:"It is the leadership review and I have updates from several projects that need to become one clear picture of where the portfolio stands.",
+    audienceTag:"Leadership, the people who decide where money and attention go.",
+    source:"My individual updates from each project in the portfolio.",
+    constraints:"Group every project under On Track, At Risk, or Needs a Decision. Keep the whole thing under 250 words. Surface what needs leadership action. " + NO_INVENT,
+    format:"Three grouped sections, On Track, At Risk, and Needs a Decision, each a short bulleted list. Label each section.",
+    task:"Using only my updates, produce the grouped portfolio summary in one pass."
+  },
+  {
+    name:"Closeout and Lessons Learned",
+    blurb:"Turn retro notes into an honest lessons-learned doc.",
+    audience:"The team and sponsor",
+    role:"You are a project manager who runs honest retrospectives and turns them into lessons a team will actually use next time.",
+    context:"A project just wrapped and I have raw retro notes. I need a lessons-learned document that is honest, not a corporate gloss.",
+    audienceTag:"The team and the project sponsor.",
+    source:"My raw retrospective notes from the project.",
+    constraints:"Cover what worked, what broke, and three specific changes for next time. Be honest, name the real issues, skip the corporate spin. " + NO_INVENT,
+    format:"Three sections, What Worked, What Broke, and Three Changes We Will Make. Label each section.",
+    task:"Using only my retro notes, write the lessons-learned document in one pass."
+  },
+  {
+    name:"Scope-Change Note",
+    blurb:"Push back on scope creep without burning the relationship.",
+    audience:"The stakeholder",
+    role:"You are a project manager who can say no to scope creep while keeping the relationship strong.",
+    context:"A stakeholder has asked for more than we agreed, and I need to respond in a way that protects the project without damaging trust.",
+    audienceTag:"The stakeholder making the request.",
+    source:"The change being requested, plus the current scope or timeline it affects.",
+    constraints:"Confirm that yes it is possible, state the cost in time or money, and name the decision needed. No apology, no defensiveness. " + NO_INVENT,
+    format:"A short email: request acknowledged, impact stated, decision asked for at the end.",
+    task:"Using only what I gave you, write the scope-change note in one pass."
+  },
+  {
+    name:"Executive Summary",
+    blurb:"Compress a long document into what a busy exec needs to decide.",
+    audience:"An executive",
+    role:"You are a chief of staff who can compress a long document into the few things a busy executive needs to decide.",
+    context:"I have a long document and an executive who has two minutes. I need the signal, not the noise.",
+    audienceTag:"An executive who reads only what affects a decision.",
+    source:"The long document, or its key sections, that needs summarizing.",
+    constraints:"One paragraph, then three bullets, then one decision sentence. Keep only what is relevant to the decision. " + NO_INVENT,
+    format:"A summary block: one opening paragraph, three bullets, and one decision sentence at the end.",
+    task:"Using only the document I gave you, produce the executive summary in one pass."
+  },
+  {
+    name:"Difficult Update",
+    blurb:"Deliver bad news on a slipping project without losing the room.",
+    audience:"Leadership",
+    role:"You are a project manager who can deliver bad news without losing the room or the project.",
+    context:"A project is slipping and leadership needs to hear it from me, with a plan, before they hear it somewhere else.",
+    audienceTag:"Leadership, the people who will ask what happens now.",
+    source:"What slipped, why it slipped, and my recovery options.",
+    constraints:"Own it, give the cause in one line, lay out the recovery plan, and commit to a realistic new date. Accountable, not defensive. " + NO_INVENT,
+    format:"An email: the situation, the one-line cause, the recovery plan, and the new date.",
+    task:"Using only what I gave you, write the difficult update in one pass."
+  },
+  {
+    name:"Weekly Reusable Prompt",
+    blurb:"Save a prompt once and reuse it every week. The System Gap proof.",
+    audience:"The PM",
+    role:"You are a systems-minded project manager who shows others how to turn a one-time prompt into a weekly time-saver.",
+    context:"I keep rewriting the same update prompt every week. I want to save it once and reuse it, and I want to see exactly how the save-and-reuse system works.",
+    audienceTag:"The PM who wants the system, not just one output.",
+    source:"The weekly prompt I want to save and reuse.",
+    constraints:"Demonstrate the save-and-reuse system step by step. Show which inputs change each week and which stay fixed. This is the System Gap proof. " + NO_INVENT,
+    format:"The saved prompt in a code block, then numbered instructions for reusing it each week, then a one-line note on what to update.",
+    task:"Using only my prompt, produce the saved prompt and the reuse instructions in one pass."
+  }
+];
+
+// Normalize the paid objects so assemble() can read them (audience field name).
+function paidToOmega(p){
+  return assemble({
+    role:p.role, context:p.context, audience:p.audienceTag,
+    source:p.source, constraints:p.constraints, format:p.format,
+    voice:VOICE, task:p.task
+  });
+}
+
+/* ============================================================
+   WIRING
+   ============================================================ */
+(function init(){
+  var C = window.CONFIG;
+
+  // ---- Form action ----
+  var form = document.getElementById("gateForm");
+  if(C.FORM_ACTION){
+    form.setAttribute("action", C.FORM_ACTION);
+    form.setAttribute("method", "POST");
+  } else {
+    document.getElementById("gateFlag").classList.add("show");
+  }
+  form.addEventListener("submit", function(e){
+    if(!C.FORM_ACTION){
+      e.preventDefault();
+      document.getElementById("gateFlag").classList.add("show");
+    }
+    // When FORM_ACTION is set, the browser submits normally to the capture endpoint.
+  });
+
+  // ---- Kit payment ----
+  var kitBtn = document.getElementById("kitBtn");
+  if(C.KIT_PAYMENT){
+    kitBtn.setAttribute("href", C.KIT_PAYMENT);
+    kitBtn.setAttribute("target","_blank");
+    kitBtn.setAttribute("rel","noopener");
+  } else {
+    kitBtn.setAttribute("aria-disabled","true");
+    kitBtn.addEventListener("click", function(e){
+      e.preventDefault();
+      document.getElementById("kitFlag").classList.add("show");
+    });
+    document.getElementById("kitFlag").classList.add("show");
+  }
+
+  // ---- Book link (Door 1) ----
+  var bookBtn = document.getElementById("bookBtn");
+  if(C.BOOK_LINK){
+    bookBtn.setAttribute("href", C.BOOK_LINK);
+    bookBtn.setAttribute("target","_blank");
+    bookBtn.setAttribute("rel","noopener");
+  } else {
+    bookBtn.setAttribute("aria-disabled","true");
+    bookBtn.addEventListener("click", function(e){
+      e.preventDefault();
+      document.getElementById("bookFlag").classList.add("show");
+    });
+    document.getElementById("bookFlag").classList.add("show");
+  }
+
+  // ---- Booking link (Door 2 + footer) ----
+  var bookingBtn = document.getElementById("bookingBtn");
+  var footBooking = document.getElementById("footBooking");
+  if(C.BOOKING_LINK){
+    bookingBtn.setAttribute("href", C.BOOKING_LINK);
+    footBooking.setAttribute("href", C.BOOKING_LINK);
+  } else {
+    bookingBtn.setAttribute("aria-disabled","true");
+    bookingBtn.addEventListener("click", function(e){ e.preventDefault(); document.getElementById("bookingFlag").classList.add("show"); });
+    document.getElementById("bookingFlag").classList.add("show");
+    footBooking.addEventListener("click", function(e){ e.preventDefault(); });
+  }
+
+  // ---- Free generator ----
+  var output = document.getElementById("output");
+  var copyBtn = document.getElementById("copyBtn");
+  document.getElementById("genBtn").addEventListener("click", function(){
+    var text = buildFreeGenerator();
+    output.textContent = text;
+    output.classList.remove("reveal");
+    // Re-trigger the reveal transition.
+    void output.offsetWidth;
+    output.classList.add("reveal");
+    copyBtn.classList.remove("done");
+    copyBtn.textContent = "Copy";
+  });
+
+  copyBtn.addEventListener("click", function(){
+    var text = output.textContent;
+    if(!text){ return; }
+    var done = function(){
+      copyBtn.textContent = "Copied";
+      copyBtn.classList.add("done");
+      setTimeout(function(){ copyBtn.textContent = "Copy"; copyBtn.classList.remove("done"); }, 1800);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done).catch(function(){ fallbackCopy(text); done(); });
+    } else { fallbackCopy(text); done(); }
+  });
+
+  function fallbackCopy(text){
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  // ---- Render locked paid generators ----
+  var grid = document.getElementById("lockedGrid");
+  PAID.forEach(function(p){
+    var full = paidToOmega(p);            // full Omega prompt is built and stored
+    var preview = full.split("\n").slice(0,2).join("\n");
+    var card = document.createElement("div");
+    card.className = "gen-card locked";
+    card.innerHTML =
+      '<div class="body">' +
+        '<span class="tag">Omega Kit</span>' +
+        '<h3>' + p.name + '</h3>' +
+        '<p class="meta">' + p.blurb + '</p>' +
+        '<p class="meta"><b>For:</b> ' + p.audience + '</p>' +
+        '<pre class="out reveal" style="max-height:120px;font-size:.74rem">' + escapeHtml(preview) + '</pre>' +
+      '</div>' +
+      '<div class="lock-overlay">' +
+        '<div class="lock-ic mono">[ locked ]</div>' +
+        '<div class="small">Built to the Omega standard. Unlock all nine with the Kit.</div>' +
+        '<a class="btn btn-primary lock-cta" href="#kit">Unlock with the Omega Kit, $97</a>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+
+  // If the Kit link is live, point each lock CTA straight at checkout.
+  if(C.KIT_PAYMENT){
+    Array.prototype.forEach.call(document.querySelectorAll(".lock-cta"), function(a){
+      a.setAttribute("href", C.KIT_PAYMENT);
+      a.setAttribute("target","_blank");
+      a.setAttribute("rel","noopener");
+    });
+  }
+
+  function escapeHtml(s){
+    return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  }
+})();
+</script>
+</body>
+</html>
