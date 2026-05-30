@@ -35,14 +35,14 @@ tier's (or vice versa).
 
 ```yaml
 # --- Free tier (registration is free) ---
-zoom_free_link:   https://us06web.zoom.us/j/84897438279?pwd=uwf786mP5RWRivzdWgIlwdPW5MUsqF.1
-zoom_free_id:     "848 9743 8279"
-zoom_free_pass:   "909573"
+zoom_free_link:   "[fill — free join link, e.g. https://us06web.zoom.us/j/<id>?pwd=<token>]"
+zoom_free_id:     "[fill — free meeting ID]"
+zoom_free_pass:   "[fill — free passcode]"
 
 # --- Paid tier (drop-in or pass) ---
-zoom_paid_link:   https://us06web.zoom.us/j/84663306664?pwd=1Yc3CpUzZaANbnZbbmaaROvAclDGMy.1
-zoom_paid_id:     "846 6330 6664"
-zoom_paid_pass:   "514049"
+zoom_paid_link:   "[fill — paid join link, e.g. https://us06web.zoom.us/j/<id>?pwd=<token>]"
+zoom_paid_id:     "[fill — paid meeting ID]"
+zoom_paid_pass:   "[fill — paid passcode]"
 
 # --- Schedule ---
 next_build_date:  "Tue Jun 9, 6p ET"
