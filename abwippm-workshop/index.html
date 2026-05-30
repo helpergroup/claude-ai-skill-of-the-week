@@ -15,13 +15,21 @@
   page so nothing ships half wired.
 
    1. FORM_ACTION    Email capture form action URL.
-                     Status: NEEDS WIRING (paste action URL).
+                     Status: NEEDS SETUP. The lead-capture system was
+                     not reachable from this build session, so the form
+                     action is empty and flagged on the page. Paste the
+                     QUIET Cheat Sheet form action URL here, and confirm
+                     the delivery automation (cheat sheet send, tag
+                     abwippm-2026, start the workshop nurture) before
+                     deploy.
    2. KIT_PAYMENT    Omega Kit checkout link, $97 one-time.
-                     Status: NEEDS WIRING (paste link).
+                     Status: SET. Live $97 checkout, verify it loads.
    3. BOOK_LINK      The Money Map book purchase link.
-                     Status: NOT FOUND, left empty by design.
+                     Status: SET. Amazon listing for The Money Map.
    4. BOOKING_LINK   Voice Blueprint booking link.
-                     Status: SET to the brand booking fallback.
+                     Status: SET to the brand booking fallback. No
+                     dedicated Voice Blueprint calendar was reachable
+                     this session, swap if you have a specific one.
 
   No secrets live in this file. Links only.
 ============================================================
@@ -383,12 +391,12 @@
    CONFIG  (edit these four values, nothing else required)
    ============================================================ */
 window.CONFIG = {
-  // 1. Email capture form action URL. NEEDS WIRING.
+  // 1. Email capture form action URL. NEEDS SETUP, see header note.
   FORM_ACTION: "",
-  // 2. Omega Kit checkout link, $97 one-time. NEEDS WIRING.
-  KIT_PAYMENT: "",
-  // 3. The Money Map book purchase link. NOT FOUND, empty by design.
-  BOOK_LINK: "",
+  // 2. Omega Kit checkout link, $97 one-time. SET (live $97 checkout).
+  KIT_PAYMENT: "https://buy.stripe.com/bJe00l2A36dJ6kU6gw5os02",
+  // 3. The Money Map book purchase link. SET (Amazon listing).
+  BOOK_LINK: "https://a.co/d/04K9DNU4",
   // 4. Voice Blueprint booking link. SET to brand booking fallback.
   BOOKING_LINK: "https://links.helpersaas.com/widget/booking/SyLKN4RCDJRZP1oMpeOU"
 };
