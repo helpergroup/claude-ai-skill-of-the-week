@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Quiet Power, Loud Results | Workshop Resources</title>
-<meta name="description" content="You were in the room. Here is everything from the Quiet Power, Loud Results workshop. The QUIET Method cheat sheet, a live Omega Prompt generator, and the Project Leader's Omega Kit." />
+<meta name="description" content="You were in the room. Here is everything from the Quiet Power, Loud Results workshop. The free QUIET Method cheat sheet, a live look at the tools, and the Project Leader's Toolkit." />
 
 <!-- =========================================================
      CONFIG BLOCK  ::  Verify or swap these four links before deploy.
@@ -19,7 +19,7 @@
     //    "check back" note instead of failing. Fill it and the gate goes live.
     FORM_ACTION: "",
 
-    // 2. Omega Kit checkout. Live, $97 one-time.
+    // 2. Toolkit checkout. Live, $97 one-time.
     KIT_PAYMENT: "https://buy.stripe.com/5kQ14p5MfeKfbFecEU5os01",
 
     // 3. The Money Map book.
@@ -84,6 +84,20 @@
   }
   .lead { font-size: 1.18rem; color: var(--warm); max-width: 60ch; }
 
+  /* Pills for free vs paid signposting */
+  .pill {
+    font-family: "Space Mono", monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    padding: 4px 11px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+  .pill-free { background: rgba(232,236,244,0.08); color: var(--warm); border: 1px solid var(--line-strong); }
+  .pill-paid { background: rgba(201,149,42,0.18); color: var(--gold-soft); border: 1px solid rgba(201,149,42,0.4); }
+  .signpost { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.92rem; color: var(--warm-dim); margin: 0 0 26px; }
+
   /* Buttons */
   .btn {
     display: inline-flex;
@@ -134,6 +148,7 @@
     padding: 32px;
     box-shadow: 0 24px 60px rgba(0,0,0,0.4);
   }
+  .card-form .free-flag { display: inline-block; margin-bottom: 16px; }
   .field { margin-bottom: 16px; }
   label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--warm); margin-bottom: 7px; }
   input[type="text"], input[type="email"], textarea, select {
@@ -147,7 +162,6 @@
     padding: 13px 14px;
     transition: border-color .15s ease, box-shadow .15s ease;
   }
-  textarea { resize: vertical; min-height: 96px; line-height: 1.5; }
   input:focus, textarea:focus, select:focus {
     outline: none;
     border-color: var(--gold);
@@ -158,47 +172,35 @@
   .form-msg.show { display: block; }
   .form-msg.ok { background: rgba(201,149,42,0.12); border: 1px solid rgba(201,149,42,0.4); color: var(--gold-soft); }
 
-  /* Generator */
-  .gen-head { max-width: 64ch; margin-bottom: 40px; }
-  .gen-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
-  .gcard {
-    background: var(--card-2);
-    border: 1px solid var(--line);
+  /* Demo */
+  .demo-head { max-width: 64ch; margin-bottom: 36px; }
+  .demo-card {
+    background: linear-gradient(180deg, #182331, var(--card-2));
+    border: 1px solid rgba(201,149,42,0.45);
     border-radius: var(--radius);
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    transition: border-color .18s ease, transform .18s ease;
+    padding: 28px;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 30px;
+    align-items: start;
   }
-  .gcard:hover { border-color: var(--line-strong); transform: translateY(-3px); }
-  .gcard.free { border-color: rgba(201,149,42,0.45); background: linear-gradient(180deg, #182331, var(--card-2)); box-shadow: 0 18px 50px rgba(0,0,0,0.35); }
-  .gcard .tag {
+  .demo-card .tag {
     font-family: "Space Mono", monospace;
     font-size: 0.62rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     padding: 4px 9px;
     border-radius: 999px;
+    background: rgba(201,149,42,0.18);
+    color: var(--gold-soft);
+    border: 1px solid rgba(201,149,42,0.4);
     align-self: flex-start;
+    display: inline-block;
     margin-bottom: 14px;
   }
-  .tag.live { background: rgba(201,149,42,0.18); color: var(--gold-soft); border: 1px solid rgba(201,149,42,0.4); }
-  .tag.locked { background: rgba(232,236,244,0.06); color: var(--warm-dim); border: 1px solid var(--line); }
-  .gcard h3 { margin-bottom: 8px; }
-  .gcard .desc { font-size: 0.92rem; color: var(--warm-dim); margin-bottom: 18px; flex-grow: 1; }
-  .gcard .lockrow { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--warm-dim); }
-  .lock-ico { color: var(--gold); }
-
-  /* Generator workspace (free) */
-  .workspace {
-    margin-top: 22px;
-    border-top: 1px solid var(--line);
-    padding-top: 22px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 26px;
-  }
+  .demo-card h3 { margin-bottom: 10px; }
+  .demo-note { font-size: 0.9rem; color: var(--warm-dim); }
   .out-shell {
     background: var(--charcoal);
     border: 1px solid var(--line-strong);
@@ -216,7 +218,7 @@
     background: #0c1320;
   }
   .out-bar span { font-family: "Space Mono", monospace; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--warm-dim); text-transform: uppercase; }
-  .copy-btn {
+  .replay-btn {
     font-family: "DM Sans", sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
@@ -226,11 +228,10 @@
     border-radius: 8px;
     padding: 6px 13px;
     cursor: pointer;
-    transition: background .15s ease, color .15s ease, transform .12s ease;
+    transition: background .15s ease, transform .12s ease;
   }
-  .copy-btn:hover { background: rgba(201,149,42,0.24); }
-  .copy-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
-  .copy-btn.copied { background: var(--gold); color: var(--charcoal); border-color: var(--gold); }
+  .replay-btn:hover { background: rgba(201,149,42,0.24); transform: translateY(-1px); }
+  .replay-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
   pre.out {
     margin: 0;
     padding: 18px;
@@ -242,12 +243,48 @@
     word-break: break-word;
     max-height: 460px;
     overflow-y: auto;
+  }
+  .demo-line {
+    display: block;
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(8px);
     transition: opacity .45s ease, transform .45s ease;
   }
-  pre.out.reveal { opacity: 1; transform: translateY(0); }
+  .demo-line.show { opacity: 1; transform: translateY(0); }
   .out .t { color: var(--gold-soft); }
+  .demo-foot { margin-top: 22px; font-size: 0.92rem; color: var(--warm-dim); display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+
+  /* Locked tool cards */
+  .tools-head { margin: 56px 0 22px; }
+  .gen-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
+  .gcard {
+    background: var(--card-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: border-color .18s ease, transform .18s ease;
+  }
+  .gcard:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+  .gcard .tag {
+    font-family: "Space Mono", monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 999px;
+    align-self: flex-start;
+    margin-bottom: 14px;
+    background: rgba(232,236,244,0.06);
+    color: var(--warm-dim);
+    border: 1px solid var(--line);
+  }
+  .gcard h3 { margin-bottom: 8px; }
+  .gcard .desc { font-size: 0.92rem; color: var(--warm-dim); margin-bottom: 18px; flex-grow: 1; }
+  .gcard .lockrow { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--warm-dim); }
+  .lock-ico { color: var(--gold); }
 
   /* Kit */
   .kit { background: linear-gradient(180deg, var(--navy), #142231); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -299,29 +336,9 @@
   .tagline { font-size: 0.92rem; color: var(--warm-dim); max-width: 42ch; }
   .legal { margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 0.78rem; color: #5b6679; }
 
-  /* Toast */
-  .toast {
-    position: fixed;
-    bottom: 26px;
-    left: 50%;
-    transform: translateX(-50%) translateY(40px);
-    background: var(--gold);
-    color: var(--charcoal);
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 12px 22px;
-    border-radius: 999px;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .25s ease, transform .25s ease;
-    z-index: 90;
-  }
-  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
   @media (max-width: 880px) {
     section { padding: 64px 0; }
-    .magnet-grid, .kit-top, .doors-grid, .foot-grid, .workspace { grid-template-columns: 1fr; }
+    .magnet-grid, .kit-top, .doors-grid, .foot-grid, .demo-card { grid-template-columns: 1fr; }
     .price-card { position: static; }
     .hero { padding: 90px 0 70px; }
   }
@@ -334,12 +351,12 @@
   <div class="wrap">
     <span class="eyebrow">Quiet Power, Loud Results &middot; ABWIPPM Workshop</span>
     <h1>You were in the room.<br /><span>Here is everything.</span></h1>
-    <p class="lead">Everything we built together in Quiet Power, Loud Results lives on this page. The cheat sheet, a working prompt engine you can use right now, and the full kit if you want the whole system. Start with the cheat sheet below. It takes one minute and it is yours to keep.</p>
+    <p class="lead">Everything we built together in Quiet Power, Loud Results lives on this page. Start with the free cheat sheet. Then take a look at the exact tools we used, and pick up the full toolkit when you want them all. The cheat sheet takes one minute and it is yours to keep.</p>
     <div class="scrolls">
-      <a class="btn btn-gold" href="#magnet">Get the QUIET Cheat Sheet</a>
-      <a class="btn btn-ghost" href="#generator">Try the live generator</a>
+      <a class="btn btn-gold" href="#magnet">Get the free cheat sheet</a>
+      <a class="btn btn-ghost" href="#magnet">Start here, it is free</a>
     </div>
-    <p class="hero-meta">QUIET Method &nbsp;//&nbsp; Omega Prompt &nbsp;//&nbsp; Built for project leaders</p>
+    <p class="hero-meta">QUIET Method &nbsp;//&nbsp; Free cheat sheet &nbsp;//&nbsp; Built for project leaders</p>
   </div>
 </header>
 
@@ -350,9 +367,10 @@
       <span class="eyebrow">Free, and yours to keep</span>
       <h2>The QUIET Method Cheat Sheet</h2>
       <p>You felt it in the room. The reason a vague ask gets you a vague answer, and a structured one gets you work you can ship. The cheat sheet is the one page version of the QUIET Method, the exact frame we used to turn messy notes into clean, audience ready output.</p>
-      <p>Put your name and email in and it lands in your inbox. No course, no upsell on this one. This is the thing you take home.</p>
+      <p>Put your name and email in and it lands in your inbox. No payment, no catch on this one. The cheat sheet is completely free. Further down you will find the paid toolkit, but that part is only if you want all ten tools.</p>
     </div>
     <div class="card-form">
+      <span class="pill pill-free free-flag">Free download</span>
       <form id="leadForm" novalidate>
         <div class="field">
           <label for="fname">First name</label>
@@ -362,7 +380,7 @@
           <label for="email">Email</label>
           <input type="email" id="email" name="email" autocomplete="email" placeholder="you@work.com" required />
         </div>
-        <button type="submit" class="btn btn-gold btn-block">Send me the cheat sheet</button>
+        <button type="submit" class="btn btn-gold btn-block">Send me the free cheat sheet</button>
         <p class="form-note">Lead with the work, then the ask. We send the cheat sheet, then a short workshop follow up. Leave anytime.</p>
         <div class="form-msg ok" id="formMsg" role="status" aria-live="polite"></div>
       </form>
@@ -370,41 +388,71 @@
   </div>
 </section>
 
-<!-- ============ LIVE GENERATOR ============ -->
+<!-- ============ LIVE DEMO + LOCKED TOOLS ============ -->
 <section id="generator">
   <div class="wrap">
-    <div class="gen-head">
+    <div class="demo-head">
       <span class="eyebrow">Proof, not a promise</span>
-      <h2>The Stakeholder Update Engine</h2>
-      <p class="lead">This is the live one. Drop in your raw notes, tell it who is reading, and it assembles a complete Omega Prompt you can paste into any AI tool. Four audience ready updates from one pass. Free to use, right here, as many times as you want.</p>
+      <h2>See what the tools actually build</h2>
+      <p class="lead">Here is the Stakeholder Update Engine, one of the ten tools, assembling a finished prompt in real time. Watch how it structures messy notes into something any AI tool turns into four clean, audience ready updates. This is a live look at the output, not a fill in form. The working tools live in the toolkit.</p>
     </div>
 
+    <!-- Animated demo (view only, no live generation) -->
+    <div class="demo-card" id="demoCard">
+      <div>
+        <span class="tag">Sample &middot; Stakeholder Update Engine</span>
+        <h3>One structure. Four audiences.</h3>
+        <p class="demo-note">Notice the shape. A clear role, the context, who is reading, your raw notes, the rules, the exact format, the voice, and the task last. That order is what makes the output reliable instead of generic. Every tool in the toolkit follows it.</p>
+        <div class="demo-foot">
+          <span class="pill pill-free">Free to watch</span>
+          <a class="btn btn-ghost" href="#kit" style="padding:11px 22px;font-size:.92rem;">Unlock the working tools</a>
+        </div>
+      </div>
+      <div class="out-shell">
+        <div class="out-bar">
+          <span>structured-prompt.preview</span>
+          <button class="replay-btn" id="replayBtn" type="button">Replay</button>
+        </div>
+        <pre class="out" id="demoOut" aria-label="Sample structured prompt"></pre>
+      </div>
+    </div>
+
+    <!-- The rest of the toolkit, locked -->
+    <div class="tools-head">
+      <span class="eyebrow">The other nine</span>
+      <h2 style="font-size:clamp(1.4rem,3vw,2rem);">Inside the toolkit</h2>
+    </div>
     <div class="gen-cards" id="genCards"></div>
   </div>
 </section>
 
-<!-- ============ THE OMEGA KIT ============ -->
+<!-- ============ THE TOOLKIT ============ -->
 <section class="kit" id="kit">
   <div class="wrap">
     <div class="kit-top">
       <div>
         <span class="eyebrow">The whole system</span>
-        <h2>The Project Leader's Omega Kit</h2>
-        <p class="lead">The Stakeholder Update Engine is one of ten. The Kit unlocks the other nine, every one built to the same Omega standard, every one solving a recurring project leadership job that quietly eats your week.</p>
-        <p>The recap you write after every meeting. The risk log you keep meaning to start. The kickoff email, the portfolio rollup, the scope-change note you dread sending. The hard update on the project that slipped. Each one becomes a structured prompt you fill in once and reuse forever. That last part, the save and reuse, is the gap most people never close. The Kit closes it.</p>
+        <h2>The Project Leader's Toolkit</h2>
+        <div class="signpost">
+          <span class="pill pill-free">Free</span> the cheat sheet above
+          <span style="opacity:.4;">&middot;</span>
+          <span class="pill pill-paid">$97</span> this toolkit, only if you want all ten tools
+        </div>
+        <p class="lead">The Stakeholder Update Engine is one of ten. The toolkit unlocks the other nine, every one built to the same proven structure, every one solving a recurring project leadership job that quietly eats your week.</p>
+        <p>The recap you write after every meeting. The risk log you keep meaning to start. The kickoff email, the portfolio rollup, the scope-change note you dread sending. The hard update on the project that slipped. Each one becomes a structured prompt you fill in once and reuse forever. That last part, the save and reuse, is the gap most people never close. The toolkit closes it.</p>
       </div>
 
       <aside class="price-card">
         <div class="price">$97 <small>one time</small></div>
         <ul>
-          <li>All nine paid generators, unlocked</li>
-          <li>Every output built to the Omega standard</li>
+          <li>All nine paid tools, unlocked</li>
+          <li>Every output built to the same proven structure</li>
           <li>The save and reuse system, demonstrated</li>
           <li>Yours to keep, no subscription</li>
         </ul>
-        <a class="btn btn-gold btn-block" id="kitBuy" href="#" target="_blank" rel="noopener">Unlock the Kit</a>
+        <a class="btn btn-gold btn-block" id="kitBuy" href="#" target="_blank" rel="noopener">Unlock the toolkit</a>
         <div class="bonus">
-          <b>Workshop bonus, next 48 hours:</b> book now and you also get the bonus generator pack plus a seat on the group office hours call. Because you were in the room.
+          <b>Workshop bonus, next 48 hours:</b> grab it now and you also get the bonus tool pack plus a seat on the group office hours call. Because you were in the room.
         </div>
       </aside>
     </div>
@@ -421,13 +469,13 @@
       <div class="door" id="door1">
         <div class="num">DOOR 01</div>
         <h3 style="margin-top:10px;">The Money Map</h3>
-        <p>The book behind the method. How one decision changes your entire revenue picture, written from the kitchen table where the numbers were real. Read it, then come back to the Kit and the prompts will make even more sense.</p>
+        <p>The book behind the method. How one decision changes your entire revenue picture, written from the kitchen table where the numbers were real. Read it, then come back to the toolkit and the tools will make even more sense.</p>
         <a class="btn btn-ghost" id="bookBtn" href="#" target="_blank" rel="noopener">Get the book</a>
       </div>
       <div class="door" id="door2">
         <div class="num">DOOR 02</div>
         <h3 style="margin-top:10px;">Voice Blueprint Session</h3>
-        <p>You have a process that works. The question is which parts should become systems and which should stay human. Bring your real workflow to a working session and leave with a map of what to build first.</p>
+        <p>Tools are only half of it. The other half is sounding like you. In a Voice Blueprint session we capture your actual voice, the way you write and the way you decide, and build it into your systems so everything that comes out reads like you wrote it on your best day, not like a machine. Bring your real workflow and we map it together.</p>
         <a class="btn btn-gold" id="bookingBtn" href="#" target="_blank" rel="noopener">Book the session</a>
       </div>
     </div>
@@ -452,24 +500,23 @@
       </div>
     </div>
     <div class="legal">
-      The QUIET Method and the Omega Prompt are the trademarked IP of Melessa Lawson. Quiet Power, Loud Results workshop resources.
+      The QUIET Method is the trademarked IP of Melessa Lawson. Quiet Power, Loud Results workshop resources.
     </div>
   </div>
 </footer>
 
-<div class="toast" id="toast">Copied to clipboard</div>
-
 <script>
 /* =========================================================
-   GENERATOR ENGINE
-   One data-driven engine. Each generator is a data object
-   with an assemble() that returns a full Omega Prompt in XML.
+   TOOL ENGINE
+   One data-driven engine. Each tool is a data object with an
+   assemble() that returns a full structured prompt in XML.
    Tag order is fixed: role, context, audience, source_material,
    constraints, format, voice, task. task is always last.
+   On the page, only the Stakeholder sample is shown (as an
+   animated, view-only demo). The rest are listed locked.
    ========================================================= */
 
-// Helper: build the Omega Prompt XML in the locked tag order.
-function omega(o) {
+function buildPrompt(o) {
   return [
     "<role>" + o.role + "</role>",
     "<context>" + o.context + "</context>",
@@ -484,34 +531,20 @@ function omega(o) {
 
 const BASE_CONSTRAINT = "Do not invent facts. Flag anything missing as needs confirmation.";
 
-const GENERATORS = [
-  /* ---------- FREE, LIVE ---------- */
+const TOOLS = [
+  /* ---------- The demo tool (shown on page, view only) ---------- */
   {
     id: "stakeholder",
     name: "Stakeholder Update Engine",
     desc: "Turn messy weekly notes into four audience ready updates in one pass.",
-    free: true,
-    fields: [
-      { key: "audiences", label: "Who is reading this?", type: "text",
-        placeholder: "Exec sponsor, the dev team, the client, my manager",
-        def: "Executive sponsor, the delivery team, and the client." },
-      { key: "source", label: "Your raw notes", type: "textarea",
-        placeholder: "Paste this week's messy notes. Bullet fragments are fine.",
-        def: "This week's raw, unstructured project notes covering progress, blockers, decisions, and open questions." },
-      { key: "constraints", label: "Anything to hold to?", type: "text",
-        placeholder: "Keep it under a page. Do not promise a date we have not confirmed.",
-        def: "Keep each version tight" }
-    ],
-    assemble: function (v) {
-      const audiences = (v.audiences || this.fields[0].def).trim();
-      const source = (v.source || this.fields[1].def).trim();
-      const extra = (v.constraints || this.fields[2].def).trim();
-      return omega({
+    demo: true,
+    assemble: function () {
+      return buildPrompt({
         role: "You are a senior project manager and executive communicator who turns messy weekly project notes into clear, audience-ready updates.",
         context: "It is the weekly reporting cycle. I have raw, unstructured notes and I need to update multiple stakeholders who each care about different things and have different patience for detail.",
-        audience: audiences,
-        source_material: source,
-        constraints: extra + ". Plain language, no jargon, no filler. Lead every version with what that reader cares about most. " + BASE_CONSTRAINT,
+        audience: "Executive sponsor, the delivery team, and the client.",
+        source_material: "This week's raw, unstructured project notes covering progress, blockers, decisions, and open questions.",
+        constraints: "Keep each version tight. Plain language, no jargon, no filler. Lead every version with what that reader cares about most. " + BASE_CONSTRAINT,
         format: "1. MASTER UPDATE: five bullets, biggest risk first. 2. EXECUTIVE VERSION: timeline, budget, risk only. 3. TECHNICAL VERSION: detail, dependencies, blockers. 4. CLIENT VERSION: progress, reassurance, next steps. Label each section.",
         voice: "Direct, warm, accountable. Sound like a competent human who owns the work, not a status-report robot.",
         task: "Using only my source material, produce all four outputs above in one pass."
@@ -519,14 +552,13 @@ const GENERATORS = [
     }
   },
 
-  /* ---------- PAID, LOCKED (9) ---------- */
+  /* ---------- The nine paid tools (listed locked) ---------- */
   {
     id: "recap",
     name: "Meeting Recap Engine",
     desc: "Turn raw meeting notes into a clean recap the whole team can act on.",
-    free: false,
     assemble: function () {
-      return omega({
+      return buildPrompt({
         role: "You are a chief of staff who turns raw meeting notes into a recap that leaves zero ambiguity about who owns what.",
         context: "A working meeting just ended. I have rough notes and the team needs a single source of truth before anyone forgets what was agreed.",
         audience: "The team that attended, plus anyone who missed it and needs to catch up fast.",
@@ -542,9 +574,8 @@ const GENERATORS = [
     id: "raid",
     name: "RAID Log Builder",
     desc: "Generate a starter risk log from a one line project description.",
-    free: false,
     assemble: function () {
-      return omega({
+      return buildPrompt({
         role: "You are a delivery lead who can see the likely failure points of a project before it starts.",
         context: "A new project is kicking off. I have a one line description and I need a starting risk log so the team is not blindsided later.",
         audience: "The project manager and the delivery team who will own and update this log.",
@@ -560,9 +591,8 @@ const GENERATORS = [
     id: "kickoff",
     name: "Kickoff Email Engine",
     desc: "Write a project kickoff email that sets direction in one read.",
-    free: false,
     assemble: function () {
-      return omega({
+      return buildPrompt({
         role: "You are a project leader who starts engagements with clarity so nobody wonders what we are doing or why.",
         context: "A project is about to begin. I need to align the team before the first real work starts.",
         audience: "The team assigned to the project, some of whom are joining cold.",
@@ -578,9 +608,8 @@ const GENERATORS = [
     id: "rollup",
     name: "Portfolio Rollup",
     desc: "Combine many project updates into one tight executive summary.",
-    free: false,
     assemble: function () {
-      return omega({
+      return buildPrompt({
         role: "You are a portfolio manager who can compress a dozen project updates into the three things leadership actually needs to know.",
         context: "It is the leadership reporting cycle. I have updates from many projects and an executive who has two minutes.",
         audience: "Leadership and executives who decide where attention and resources go.",
@@ -596,9 +625,8 @@ const GENERATORS = [
     id: "closeout",
     name: "Closeout / Lessons Learned",
     desc: "Turn retro notes into a lessons learned doc that is honest, not corporate.",
-    free: false,
     assemble: function () {
-      return omega({
+      return buildPrompt({
         role: "You are a delivery lead who runs retrospectives that change how the next project goes, not ones that get filed and forgotten.",
         context: "A project just wrapped. I have retro notes and I want a lessons learned doc the team and sponsor will actually use.",
         audience: "The team that delivered the work and the sponsor who funded it.",
@@ -614,9 +642,8 @@ const GENERATORS = [
     id: "scope",
     name: "Scope-Change Note",
     desc: "Push back on scope creep without burning the relationship.",
-    free: false,
     assemble: function () {
-      return omega({
+      return buildPrompt({
         role: "You are a project leader who protects scope without ever sounding defensive or difficult.",
         context: "A stakeholder has asked for something outside the agreed scope. I need to respond in a way that keeps the relationship and the timeline intact.",
         audience: "The stakeholder making the request.",
@@ -632,9 +659,8 @@ const GENERATORS = [
     id: "exec",
     name: "Executive Summary",
     desc: "Summarize a long document for a busy executive in seconds of reading.",
-    free: false,
     assemble: function () {
-      return omega({
+      return buildPrompt({
         role: "You are an analyst who can read a long document and tell a busy executive only the part that changes a decision.",
         context: "An executive has been handed a long document and no time. I need to give them the decision-relevant core.",
         audience: "A single busy executive who will act on this.",
@@ -650,9 +676,8 @@ const GENERATORS = [
     id: "difficult",
     name: "Difficult Update",
     desc: "Deliver bad news on a slipping project without losing trust.",
-    free: false,
     assemble: function () {
-      return omega({
+      return buildPrompt({
         role: "You are a project leader who delivers hard news in a way that builds trust instead of eroding it.",
         context: "A project is slipping and leadership needs to hear it from me before they hear it elsewhere.",
         audience: "Leadership, who are counting on this project and will not love this news.",
@@ -668,9 +693,8 @@ const GENERATORS = [
     id: "reusable",
     name: "Weekly Reusable Prompt",
     desc: "Save a prompt once and reuse it every week. The System Gap, closed.",
-    free: false,
     assemble: function () {
-      return omega({
+      return buildPrompt({
         role: "You are a systems coach who teaches people to stop rewriting the same prompt and start running a saved one on a schedule.",
         context: "I do a recurring weekly task by hand every time. I want to turn it into a saved, reusable prompt and a repeatable routine.",
         audience: "The project manager who will save this and run it every week.",
@@ -684,121 +708,66 @@ const GENERATORS = [
   }
 ];
 
-/* ---------- Syntax highlight the Omega tags for display ---------- */
-function highlight(xml) {
-  return xml
+/* ---------- Escape and highlight the tags for display ---------- */
+function highlight(line) {
+  return line
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/(&lt;\/?)([a-z_]+)(&gt;)/g, '$1<span class="t">$2</span>$3');
 }
 
-/* ---------- Render cards ---------- */
-function buildCards() {
-  const host = document.getElementById("genCards");
-  GENERATORS.forEach(function (g) {
-    const card = document.createElement("div");
-    card.className = "gcard" + (g.free ? " free" : "");
+/* ---------- Animated, view-only demo ---------- */
+let demoTimers = [];
+function playDemo() {
+  const demoTool = TOOLS.find(function (t) { return t.demo; });
+  const out = document.getElementById("demoOut");
+  const lines = demoTool.assemble().split("\n");
 
-    if (g.free) {
-      card.style.gridColumn = "1 / -1";
-      card.innerHTML =
-        '<span class="tag live">Live &middot; Free</span>' +
-        '<h3>' + g.name + '</h3>' +
-        '<div class="desc">' + g.desc + '</div>' +
-        '<div class="ws-fields"></div>' +
-        '<button class="btn btn-gold" style="align-self:flex-start;margin-top:6px;" id="genRun">Assemble my Omega Prompt</button>' +
-        '<div class="workspace" id="ws" style="display:none;"></div>';
-      host.appendChild(card);
+  // clear any in-flight animation
+  demoTimers.forEach(clearTimeout);
+  demoTimers = [];
+  out.innerHTML = "";
 
-      // input fields
-      const ff = card.querySelector(".ws-fields");
-      ff.style.cssText = "display:grid;gap:14px;margin:6px 0 18px;";
-      g.fields.forEach(function (f) {
-        const wrap = document.createElement("div");
-        wrap.className = "field";
-        wrap.style.margin = "0";
-        const ctrl = f.type === "textarea"
-          ? '<textarea id="f_' + f.key + '" placeholder="' + f.placeholder + '"></textarea>'
-          : '<input type="text" id="f_' + f.key + '" placeholder="' + f.placeholder + '" />';
-        wrap.innerHTML = '<label for="f_' + f.key + '">' + f.label + '</label>' + ctrl;
-        ff.appendChild(wrap);
-      });
-
-      // run
-      card.querySelector("#genRun").addEventListener("click", function () {
-        const v = {};
-        g.fields.forEach(function (f) { v[f.key] = document.getElementById("f_" + f.key).value; });
-        const xml = g.assemble(v);
-        renderOutput(card, xml);
-      });
-    } else {
-      card.innerHTML =
-        '<span class="tag locked">Locked &middot; In the Kit</span>' +
-        '<h3>' + g.name + '</h3>' +
-        '<div class="desc">' + g.desc + '</div>' +
-        '<div class="lockrow"><span class="lock-ico">&#128274;</span> Unlock with the Omega Kit, $97</div>' +
-        '<a class="btn btn-ghost" style="margin-top:14px;align-self:flex-start;" href="#kit">See the Kit</a>';
-      host.appendChild(card);
-    }
+  lines.forEach(function (line, i) {
+    const el = document.createElement("span");
+    el.className = "demo-line";
+    el.innerHTML = highlight(line) + (i < lines.length - 1 ? "\n" : "");
+    out.appendChild(el);
+    demoTimers.push(setTimeout(function () { el.classList.add("show"); }, 220 + i * 260));
   });
 }
 
-function renderOutput(card, xml) {
-  let ws = card.querySelector("#ws");
-  ws.style.display = "grid";
-  ws.innerHTML =
-    '<div>' +
-      '<p style="font-size:.86rem;color:var(--warm-dim);margin-bottom:10px;">Your complete Omega Prompt. Copy it and paste into any AI tool.</p>' +
-      '<p style="font-size:.82rem;color:var(--warm-dim);">Tag order is fixed. Every tag is populated. The task tag always comes last. That structure is what makes the output reliable.</p>' +
-    '</div>' +
-    '<div class="out-shell">' +
-      '<div class="out-bar"><span>omega-prompt.xml</span>' +
-        '<button class="copy-btn" id="copyBtn">Copy</button></div>' +
-      '<pre class="out" id="outPre"></pre>' +
-    '</div>';
-
-  const pre = ws.querySelector("#outPre");
-  pre.innerHTML = highlight(xml);
-  // reveal
-  requestAnimationFrame(function () { setTimeout(function () { pre.classList.add("reveal"); }, 30); });
-
-  const btn = ws.querySelector("#copyBtn");
-  btn.addEventListener("click", function () { copyText(xml, btn); });
-
-  ws.scrollIntoView({ behavior: "smooth", block: "nearest" });
-}
-
-/* ---------- Copy with confirmation ---------- */
-function copyText(text, btn) {
-  const done = function () {
-    if (btn) {
-      const old = btn.textContent;
-      btn.textContent = "Copied";
-      btn.classList.add("copied");
-      setTimeout(function () { btn.textContent = old; btn.classList.remove("copied"); }, 1800);
-    }
-    showToast();
-  };
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
+function initDemo() {
+  const card = document.getElementById("demoCard");
+  let played = false;
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && !played) { played = true; playDemo(); }
+      });
+    }, { threshold: 0.35 });
+    io.observe(card);
   } else {
-    fallbackCopy(text, done);
+    playDemo();
   }
+  document.getElementById("replayBtn").addEventListener("click", playDemo);
 }
-function fallbackCopy(text, done) {
-  const ta = document.createElement("textarea");
-  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
-  document.body.appendChild(ta); ta.select();
-  try { document.execCommand("copy"); } catch (e) {}
-  document.body.removeChild(ta); done();
-}
-let toastTimer;
-function showToast() {
-  const t = document.getElementById("toast");
-  t.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(function () { t.classList.remove("show"); }, 1900);
+
+/* ---------- Locked tool cards (the other nine) ---------- */
+function buildLockedCards() {
+  const host = document.getElementById("genCards");
+  TOOLS.filter(function (t) { return !t.demo; }).forEach(function (t) {
+    const card = document.createElement("div");
+    card.className = "gcard";
+    card.innerHTML =
+      '<span class="tag">Locked &middot; In the toolkit</span>' +
+      '<h3>' + t.name + '</h3>' +
+      '<div class="desc">' + t.desc + '</div>' +
+      '<div class="lockrow"><span class="lock-ico">&#128274;</span> Unlock with the toolkit, $97</div>' +
+      '<a class="btn btn-ghost" style="margin-top:14px;align-self:flex-start;" href="#kit">See the toolkit</a>';
+    host.appendChild(card);
+  });
 }
 
 /* ---------- Wire CONFIG links ---------- */
@@ -852,7 +821,8 @@ function wireForm() {
 }
 
 /* ---------- Init ---------- */
-buildCards();
+buildLockedCards();
+initDemo();
 wireLinks();
 wireForm();
 </script>
